@@ -1,0 +1,36 @@
+<!-- Se debe arreglar el menú para que active o desactive los link dependiendo de si está logueado o no. -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">BitBook</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav" *ngIf="!user">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/">Inicio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/crear-usuario">Registro</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/iniciar-sesión">Iniciar sesión</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav mr-auto" *ngIf="user">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/crear-libros">Libros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/crear-generos">Genero</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="cerrarSesion()">Cerrar sesión</a>
+        </li>
+      </ul>
+      <span class="navbar-text" *ngIf="user">
+        <b>Hola {{user.firstName}}</b>
+      </span>
+    </div>
+  </nav>

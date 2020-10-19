@@ -1,0 +1,46 @@
+<div class="container" >
+    <h1>Registrar Usuario</h1>
+    <form [formGroup]="createUserForm"  (ngSubmit)="saveUser()" >
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="firstName">Nombres</label>
+                 <input formControlName="firstName" type="text" required class="form-control" id="firstName">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lastName">Apellidos</label>
+                <input formControlName="lastName" type="text" required class="form-control" id="lastName">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="email">Correo electronico</label>
+                <input formControlName="email" type="text" required class="form-control" id="email">
+                <p class="text-danger" *ngIf="createUserForm.get('email').hasError('email')">El email es incorrecto</p>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="password">Contraseña</label>
+                <input formControlName="password" type="password" required class="form-control" id="password">
+                <div *ngIf="createUserForm.get('password').errors?.minlength">
+                    <p class="text-danger" >La contraseña debe tener mínimo 6 caracteres</p>
+               </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="birthDate">Fecha de nacimiento</label>
+                <input formControlName="birthDate" type="date" required class="form-control" id="birthDate">
+                <input formControlName="role" type="hidden" required class="form-control" id="role">
+                <p class="text-danger" *ngIf="createUserForm.get('birthDate').hasError('birthDateInvalid')">No puedes seleccionar una fecha del futuro</p>
+                <p class="text-danger" *ngIf="createUserForm.get('birthDate').hasError('menorEdad')">Debes ser mayor de edad</p>
+            </div>
+        </div>
+
+        
+        <div class="form-row" *ngIf="!createUserForm.valid">
+        </div>
+        <button class="btn btn-primary mb-2">Registrar</button>
+    </form>
+</div>

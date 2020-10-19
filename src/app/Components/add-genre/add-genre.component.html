@@ -1,0 +1,14 @@
+<div class="container" >
+    <h1>Registrar Genero</h1>
+    <form [formGroup]="genreForm" class="form-inline" (ngSubmit)="saveGenre()" >
+        <div class="form-group row mb-2">
+          <label for="name">Nombre Genero</label>
+          <input formControlName="name" type="text" required class="form-control" id="name">
+        </div>
+
+        <div class="form-group row" *ngIf="!genreForm.valid" >
+            <p class="text-danger" >No está lleno</p>
+        </div>
+        <button class="btn btn-primary mb-2">Registrar</button>
+    </form>
+</div>
