@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../Models/User';
 
+import { StorageService } from '../Services/storage.service';
+
 
 
 @Injectable({
@@ -10,11 +12,19 @@ import { User } from '../Models/User';
 })
 export class UserService {
 
-  apiUrl = 'https://bitbero.herokuapp.com'
+  apiUrl = 'http://localhost:3000'
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private storageService: StorageService
   ) { }
+
+  prepareHeader () {
+    return { headers: new HttpHeaders({
+      'Content-type': 'application/json',
+      'Authorization': `Bearer ${this.storageService.getToken()}`
+    }) }
+  }
 
 
   createUser(formData){
@@ -23,5 +33,9 @@ export class UserService {
 
   login(dataLogin){
     return this.http.post<User>(`${this.apiUrl}/login`, dataLogin)
+  }
+
+  updateUser(dataUser, id){
+    return this.http.put<User>(`${this.apiUrl}/user/update/${id}`, dataUser, this.prepareHeader ())
   }
 }

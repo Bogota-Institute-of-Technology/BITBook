@@ -12,12 +12,18 @@ import { AddGenreComponent } from './Components/add-genre/add-genre.component';
 import { AddUserComponent } from './Components/add-user/add-user.component';
 import { LoginComponent } from './Components/login/login.component';
 
+import { AuthGuard } from './Guards/auth.guard';
+import { BookListComponent } from './Components/book-list/book-list.component';
+import { UpdateUserComponent } from './Components/update-user/update-user.component';
+
 const routesApp: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'crear-libros', component: AddBookComponent },
-  { path: 'crear-generos', component: AddGenreComponent },
+  { path: 'crear-libros', canActivate: [AuthGuard], data: {only: 'Admin'}, component: AddBookComponent },
+  { path: 'crear-generos', canActivate: [AuthGuard], data: {only: 'Admin'}, component: AddGenreComponent },
   { path: 'crear-usuario', component: AddUserComponent },
-  { path: 'iniciar-sesión', component: LoginComponent }
+  { path: 'iniciar-sesion', component: LoginComponent },
+  { path: 'lista-libros', component: BookListComponent },
+  { path: 'modificar-usuario', canActivate: [AuthGuard], component: UpdateUserComponent }
 ]
 
 @NgModule({
@@ -28,7 +34,9 @@ const routesApp: Routes = [
     AddBookComponent,
     AddGenreComponent,
     AddUserComponent,
-    LoginComponent
+    LoginComponent,
+    BookListComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,

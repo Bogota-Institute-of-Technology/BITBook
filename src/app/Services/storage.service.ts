@@ -39,7 +39,7 @@ export class StorageService {
   }
 
   destruirSesion(){
-    localStorage.removeItem('token')
+    localStorage.removeItem('session')
     this.auth.next(null)
   }
 }

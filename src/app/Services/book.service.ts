@@ -16,4 +16,8 @@ export class BookService {
   createBook(formData){
     return this.http.post<Book>(`${this.apiUrl}/book/create`, formData) //altgr + } ó alt + 96
   }
+
+  getAll(){
+    return this.http.get(`${this.apiUrl}/book/getAll`)
+  }
 }

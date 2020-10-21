@@ -1,0 +1,20 @@
+<div class="container" >
+    <div class="row" >
+        <div class="col" *ngFor="let b of allBooks">
+            <div class="card" style="width: 18rem;">
+                <img src="assets/IT.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{b.name}}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Autor</b> {{b.author}}</li>
+                  <li class="list-group-item"><b>Número páginas</b> {{b.numberPages}}</li>
+                  <li class="list-group-item"><b>Editorial</b> {{b.publsher}}</li>
+                </ul>
+                <div class="card-body">
+                  <a href="#" class="card-link">Comprar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
