@@ -8,6 +8,7 @@ import { Genre } from '../Models/Genre';
 export class GenreService {
 
   apiUrl = 'https://bitbero.herokuapp.com'
+  //apiUrl = 'http://localhost:3000'
 
   constructor(
     private http: HttpClient

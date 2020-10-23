@@ -2,7 +2,7 @@
     <div class="row" >
         <div class="col" *ngFor="let b of allBooks">
             <div class="card" style="width: 18rem;">
-                <img src="assets/IT.jpg" class="card-img-top" alt="...">
+                <img src="{{APIrul}}/getImage?image={{b.image}}" class="card-img-top" alt="..." height="300px">
                 <div class="card-body">
                   <h5 class="card-title">{{b.name}}</h5>
                 </div>
@@ -12,7 +12,14 @@
                   <li class="list-group-item"><b>Editorial</b> {{b.publsher}}</li>
                 </ul>
                 <div class="card-body">
+                  <h6>Generos</h6>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" *ngFor="let g of b.genre" > {{g.name}} </li>
+                  </ul>
+                </div>
+                <div class="card-body">
                   <a href="#" class="card-link">Comprar</a>
+                  <a (click)="updateBook(b)" class="card-link">Modificar</a>
                 </div>
             </div>
         </div>

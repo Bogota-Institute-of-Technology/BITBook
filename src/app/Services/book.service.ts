@@ -8,6 +8,7 @@ import { Book } from '../Models/Book';
 export class BookService {
 
   apiUrl = 'https://bitbero.herokuapp.com'
+  //apiUrl = 'http://localhost:3000'
 
   constructor(
     private http: HttpClient
@@ -19,5 +20,9 @@ export class BookService {
 
   getAll(){
     return this.http.get(`${this.apiUrl}/book/getAll`)
+  }
+
+  updateBook(formData, id){
+    return this.http.put<Book>(`${this.apiUrl}/book/update/${id}`, formData)
   }
 }

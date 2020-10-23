@@ -5,4 +5,5 @@ export interface Book{
     numberPages: Number;
     genre: Array<string>;
     publsher: String;
+    image: File;
 }

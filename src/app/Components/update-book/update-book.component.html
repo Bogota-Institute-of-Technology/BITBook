@@ -1,6 +1,6 @@
 <div class="container" >
-    <h1>Registrar Usuario</h1>
-    <form [formGroup]="createBookForm"  (ngSubmit)="saveBook()" >
+    <h1>Modificar libro</h1>
+    <form [formGroup]="updateBookForm"  (ngSubmit)="updateBook()" >
 
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -27,10 +27,10 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="publsher">Generos</label>
-                <input formControlName="genre" name="genre" type="hidden" class="form-control" id="genre">
+                <input formControlName="genre" name="genre" type="text" class="form-control" id="genre">
                 <div class="row " >
                     <div class="col" *ngFor="let i of allGenre" >
-                        <input type="checkbox" value="{{i._id}}" (click)="saveGenre($event)" >
+                        <input type="checkbox" checked="{{genreBook.includes(i._id) ? 'checked' : ''}}" value="{{i._id}}" (click)="saveGenre($event)" >
                         <label class="ml-3">{{i.name}}</label>
                     </div>
                 </div>

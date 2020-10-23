@@ -11,8 +11,8 @@ import { StorageService } from '../Services/storage.service';
   providedIn: 'root'
 })
 export class UserService {
-
-  apiUrl = 'http://localhost:3000'
+  apiUrl = 'https://bitbero.herokuapp.com'
+  //apiUrl = 'http://localhost:3000'
 
   constructor(
     private http: HttpClient,

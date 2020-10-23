@@ -12,6 +12,7 @@ export class AddBookComponent implements OnInit {
   createBookForm: FormGroup
   allGenre;
   genreBook: Array<any> = [];
+  public file: File;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +32,8 @@ export class AddBookComponent implements OnInit {
       author: ['', Validators.required ],
       numberPages: [''],
       genre: ['', Validators.required],
-      publsher: ['', Validators.required]
+      publsher: ['', Validators.required],
+      image: [null, Validators.required],
     })
   }
 
@@ -49,7 +51,17 @@ export class AddBookComponent implements OnInit {
 
   saveBook() {
     if(this.createBookForm.valid){
-      this.bookService.createBook(this.createBookForm.value).subscribe(
+
+      const song = this.createBookForm.value;
+      const formData = new FormData();
+      formData.append('name', song.name);
+      formData.append('author', song.author);
+      formData.append('numberPages', song.numberPages);
+      formData.append('genre', song.genre);
+      formData.append('publsher', song.publsher);
+      formData.append('image', this.file);
+
+      this.bookService.createBook(formData).subscribe(
         (userBook) => {
           console.log(userBook)
           alert('Creación exitosa')
@@ -77,6 +89,10 @@ export class AddBookComponent implements OnInit {
       value = this.genreBook
     }
     this.createBookForm.get('genre').setValue(value);
+  }
+
+  prepareImage(event: any) {
+    this.file = <File>event.target.files[0];
   }
 
 }

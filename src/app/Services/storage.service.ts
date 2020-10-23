@@ -35,7 +35,16 @@ export class StorageService {
 
     let urlBase64 = token.split('.')[1];
     let b64 = urlBase64.replace('-', '+').replace('_', '/');
-    return JSON.parse(atob(b64));
+    //return JSON.parse(atob(b64));
+    return JSON.parse(this.decodeData(b64));
+  }
+
+  decodeData(str){
+    return decodeURIComponent(atob(str).split('').map(
+      function(c){ 
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }
+    ).join(''))
   }
 
   destruirSesion(){
