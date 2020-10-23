@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BookService } from '../../Services/book.service';
 import { GenreService } from '../../Services/genre.service';
 
@@ -17,7 +18,8 @@ export class AddBookComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private bookService: BookService,
-    private genreService: GenreService
+    private genreService: GenreService,
+    private router: Router
   ) {
     this.gerGenre()
     this.validator()
@@ -63,8 +65,8 @@ export class AddBookComponent implements OnInit {
 
       this.bookService.createBook(formData).subscribe(
         (userBook) => {
-          console.log(userBook)
           alert('Creación exitosa')
+          this.router.navigate(['/lista-libros'])
         },
         (error) => {
           console.error('Error: ', error)

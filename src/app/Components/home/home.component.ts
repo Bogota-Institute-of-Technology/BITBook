@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { FirebaseStorageService } from '../../Services/firebase-storage.service';
+//import { FirebaseStorageService } from '../../Services/firebase-storage.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,7 @@ import { FirebaseStorageService } from '../../Services/firebase-storage.service'
 export class HomeComponent implements OnInit {
 
   constructor (
-    private firebaseStorage: FirebaseStorageService
+    //private firebaseStorage: FirebaseStorageService
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   public finalizado = false;
 
   //Evento que se gatilla cuando el input de tipo archivo cambia
-  public cambioArchivo(event) {
+  /*public cambioArchivo(event) {
     if (event.target.files.length > 0) {
       for (let i = 0; i < event.target.files.length; i++) {
         this.mensajeArchivo = `Archivo preparado: ${event.target.files[i].name}`;
@@ -38,10 +38,10 @@ export class HomeComponent implements OnInit {
     } else {
       this.mensajeArchivo = 'No hay un archivo seleccionado';
     }
-  }
+  }*/
 
   //Sube el archivo a Cloud Storage
-  public subirArchivo() {
+  /*public subirArchivo() {
     let archivo = this.datosFormulario.get('archivo');
     let referencia = this.firebaseStorage.referenciaCloudStorage(this.nombreArchivo);
     let tarea = this.firebaseStorage.tareaCloudStorage(this.nombreArchivo, archivo);
@@ -58,5 +58,5 @@ export class HomeComponent implements OnInit {
       console.log('URL --> ', URL)
       this.URLPublica = `${URL}?alt=media`;
     });
-  }
+  }*/
 }
